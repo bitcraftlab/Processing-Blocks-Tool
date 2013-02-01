@@ -30,21 +30,21 @@
  
  
  
- public class HelloTool implements Tool {
+ public class BlocksTool implements Tool {
  
  // when creating a tool, the name of the main class which implements Tool
  // must be the same as the value defined for project.name in your build.properties
  
  
 	public String getMenuTitle() {
-		return "Hello Tool";
+		return "Blocks";
 	}
  
 	public void init(Editor theEditor) {
 	}
  
 	public void run() {
-		System.out.println("hello Tool. ##name## ##version## by ##author##");
+		System.out.println("Let's snap blocks together. ##name## ##version## by ##author##");
 	}
  
  }
