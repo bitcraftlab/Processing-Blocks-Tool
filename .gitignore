@@ -1,0 +1,4 @@
+/distribution/*
+/resources/local.properties
+.classpath
+.project
