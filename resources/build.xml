@@ -25,9 +25,14 @@
 	<property name="line" value="------------------------------------------------------------------------------------------------" />
 
 	<condition property="is.normal">
-		<equals arg1="${project.compile}" arg2="normal" />
+		<or>
+			<equals arg1="${project.compile}" arg2="normal" />
+			<equals arg1="${project.compile}" arg2="publish" />
+		</or>
 	</condition>
-	
+	<condition property="is.publish">
+		<equals arg1="${project.compile}" arg2="publish" />
+	</condition>
 	
 	<!-- set the OS properties -->
 	<condition property="is.mac">
@@ -53,6 +58,7 @@
 	<property name="project.reference" location="reference"/>
 	<property name="project.dist" location="distribution"/>
 	<property name="project.dist.version" location="distribution/${project.name}-${tool.version}"/>
+	<property name="project.publish" location="${websites.location}/${project.name}"/>
 	<property name="install.source" location="resources/install_instructions.txt"/>
 	<property name="install.destination" location="${project.dist.version}/INSTALL.txt"/>
 	<property name="toolprops.source" location="resources/tool.properties"/>
@@ -82,9 +88,10 @@
     Building the Processing tool, ${project.name} ${tool.version}
 ${line}
 	src path        ${project.src}
-	bin path        ${project.bin}
-	classpath.local ${classpath.local.location}
+	bin path		${project.bin}
 	sketchbook      ${sketchbook.location}
+	websites        ${websites.location}
+	classpath.local ${classpath.local.location}
 	java version    ${java.target.version}
 ${line}
 	</echo>
@@ -113,6 +120,7 @@ ${line}
 		<antcall target="generate.distribution" />
 		<antcall target="generate.install.tool" />
 		<antcall target="generate.web" />
+		<antcall target="copyToWebsite" />
 	  	<antcall target="generate.zip" />	
 	  	<delete dir="${project.tmp}"/>
 	</target>
@@ -253,7 +261,15 @@ ${line}
 		<replaceregexp file="${project.dist.version}/web/index.html" match="##examples##" replace="" flags="g" />
 	</target>
 	
-	
+
+	<!-- copy generated web pages to website repo -->
+	<target name="copyToWebsite" if="is.publish">
+		<mkdir dir="${project.publish}" />
+  		<copy todir="${project.publish}">
+			<fileset dir="${project.dist.version}/web" />
+		</copy>
+	</target>
+
 	
     <!-- find and replace ##placeholder## keywords in a file -->
     <target name="parse.file">
