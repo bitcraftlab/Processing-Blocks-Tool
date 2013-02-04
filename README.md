@@ -12,5 +12,5 @@ For more information check out the [BlocksTool website](http://bitcraftlab.githu
 
 ### License
 
-The code is based on the [Processing Tool Template](http://bitcraftlab.github.com/Processing-Tool-Template/),
+The code is based on the [Processing Tool Template](https://github.com/bitcraftlab/Processing-Tool-Template),
 and is licensed under GPL 2.0
