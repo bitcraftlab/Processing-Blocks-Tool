@@ -1,0 +1,3 @@
+Copyright (c) 2013 Martin Schneider, Josh Giesbrecht
+Copyright (c) 2011-12 Elie Zananiri
+Copyright (c) 2008-11 Andreas Schlegel
