@@ -12,10 +12,11 @@
  *
  */
 
- package bitcraftlab.blocks.tool;
+package bitcraftlab.blocks.tool;
  
- import processing.app.*;
- import processing.app.tools.*;
+import edu.mit.blocks.controller.WorkspaceController;
+import processing.app.*;
+import processing.app.tools.*;
 
 
  public class BlocksTool implements Tool {
@@ -29,6 +30,11 @@
  
 	public void run() {
 		System.out.println("Let's snap blocks together. ##name## ##version## by ##author##");
+		
+		String[] args = new String[1];
+		args[0] = new String("/data/lang_def.xml");
+		WorkspaceController.main(args);
+		
 	}
  
  }
