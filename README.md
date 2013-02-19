@@ -6,10 +6,16 @@ It lets you snap blocks together to create snippets of code.
 
 ### About
 
+<<<<<<< HEAD
+The Processing Blocks Tool is currently in pre-alpha.
+This is the source repository.  
+For more information check out the [BlocksTool website](http://bitcraftlab.github.com/Processing-Blocks-Tool/).
+=======
 The Processing Blocks Tool is currently in **pre-alpha**.  
 This is the source repository.  
 For more information check out the [BlocksTool website](http://bitcraftlab.github.com/Processing-Blocks-Tool/).   
 Developer info can be found inside the [wiki](https://github.com/bitcraftlab/Processing-Blocks-Tool/wiki).
+>>>>>>> 5a61432abef787d0842e073efabefd9908ad6e6e
 
 ### License
 
