@@ -109,13 +109,42 @@ ${line}
 	</target>
 	
 	
-	
 	<target name="tool.init" depends="init"> 
 		<echo message="init tool ..." />
 	</target>
-	
-	
-	
+
+
+	<target name="tool.devel" depends="tool.init">
+		<echo message="building for development (java only) ..." />
+		<antcall target="generate.structure.devel"><param name="folder" value="tool"/></antcall>
+		<antcall target="generate.source.devel" />
+		<antcall target="compile" />
+	  	<antcall target="generate.jar"><param name="folder" value="tool"/></antcall>
+		<antcall target="copyToSketchbook"><param name="folder" value="tools"/></antcall>
+	  	<delete dir="${project.tmp}"/>
+		<delete dir="${project.bin}"/>
+	</target>
+
+
+	<target name="generate.structure.devel">
+		<echo message="create source folder ..."/>
+		<delete dir="${project.tmp}" />
+		<mkdir dir="${project.tmp}" />
+  		<mkdir dir="${project.tmp}/${project.name}/src" />
+	  	<copy todir="${project.tmp}/${project.name}/${folder}">
+  			<fileset dir="${project.lib}" excludes="README" />
+	  	</copy>
+	</target>
+
+
+	<target name="generate.source.devel">
+		<echo message="copy raw source templates ..." />
+  		<copy todir="${project.tmp}/${project.name}/src">
+  			<fileset dir="${project.src}"/>
+	  	</copy>
+	</target>
+
+
 	<target name="tool.run" depends="tool.init"> 
 		<echo message="building tool ..." />
 	  	<antcall target="generate.structure"><param name="folder" value="tool"/></antcall>
@@ -134,13 +163,11 @@ ${line}
 	</target>
 	
 	
-	
 	<target name="generate.toolprops" if="is.normal">
 	    <property name="toolprops.destination" location="${project.tmp}/${project.name}/tool.properties"/>
 	    <copy file="${toolprops.source}" tofile="${toolprops.destination}" />
 	    <antcall target="parse.file"><param name="file" value="${toolprops.destination}"/></antcall>
 	</target>
-	
 	
 	
 	<target name="copyToSketchbook">
@@ -213,6 +240,8 @@ ${line}
 	    <property name="src.list" refid="src.contents" />
 	    <foreach list="${src.list}" param="file" target="parse.file" delimiter=":" />
 	</target>
+
+
 	
 	
 	<target name="generate.distribution" if="is.normal">

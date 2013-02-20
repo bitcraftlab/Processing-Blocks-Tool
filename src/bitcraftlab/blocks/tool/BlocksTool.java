@@ -35,7 +35,9 @@ import processing.app.tools.*;
 		
 		String[] args = new String[1];
 		// TODO: how the heck do we pass in the right relative path for it to load from the data folder?
-		args[0] = "C:/Users/josh/workspace/Processing-Blocks-Tool/data/lang_def.xml";
+		//args[0] = "C:/Users/josh/workspace/Processing-Blocks-Tool/data/lang_def.xml";
+		args[0] = "data/lang_def.xml";
+		
 		System.out.println(args[0]);
 		WorkspaceController.main(args);
 		
