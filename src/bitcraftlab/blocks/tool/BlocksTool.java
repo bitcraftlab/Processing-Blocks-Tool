@@ -13,8 +13,6 @@
  */
 
 package bitcraftlab.blocks.tool;
- 
-import java.io.File;
 
 import edu.mit.blocks.controller.WorkspaceController;
 import processing.app.*;
@@ -29,18 +27,28 @@ import processing.app.tools.*;
  
 	public void init(Editor theEditor) {
 	}
+	
+	// entry point for running the tool in standalone mode ...
+	public static void main(String[] args) {
+		System.out.println("Running in standalone mode");
+		String[] defaults = { "data/lang_def.xml" };
+		launch(defaults);
+	}
  
 	public void run() {
+		
+		// TODO: 
+		// Create our own custom workspace controller 
+		// so we can load language definition from the data folder
+		// hidden inside the jar
+		
+		String[] args = { "data/lang_def.xml" };
+		launch(args);
+	}
+	
+	public static void launch(String[] args) {
 		System.out.println("Let's snap blocks together. ##name## ##version## by ##author##");
-		
-		String[] args = new String[1];
-		// TODO: how the heck do we pass in the right relative path for it to load from the data folder?
-		//args[0] = "C:/Users/josh/workspace/Processing-Blocks-Tool/data/lang_def.xml";
-		args[0] = "data/lang_def.xml";
-		
-		System.out.println(args[0]);
 		WorkspaceController.main(args);
-		
 	}
  
  }
